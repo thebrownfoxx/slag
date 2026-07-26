@@ -7,7 +7,7 @@ use std::fmt::Formatter;
 pub use combine::*;
 pub use kind::*;
 
-#[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Hash, Debug)]
+#[derive(Eq, PartialEq, Ord, PartialOrd, Copy, Clone, Hash, Debug)]
 pub struct Enchantment {
     kind: EnchantmentKind,
     level: u8,
