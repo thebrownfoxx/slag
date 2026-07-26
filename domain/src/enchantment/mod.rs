@@ -9,8 +9,25 @@ pub use kind::*;
 
 #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Hash, Debug)]
 pub struct Enchantment {
-    pub kind: EnchantmentKind,
-    pub level: u8,
+    kind: EnchantmentKind,
+    level: u8,
+}
+
+impl Enchantment {
+    pub fn new(kind: impl Into<EnchantmentKind>, level: u8) -> Self {
+        Self {
+            kind: kind.into(),
+            level,
+        }
+    }
+
+    pub fn kind(self) -> EnchantmentKind {
+        self.kind
+    }
+
+    pub fn level(self) -> u8 {
+        self.level
+    }
 }
 
 impl Display for Enchantment {
