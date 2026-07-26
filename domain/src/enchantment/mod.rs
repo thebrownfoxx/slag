@@ -1,8 +1,10 @@
+mod combine;
 mod kind;
 
 use std::fmt::Display;
 use std::fmt::Formatter;
 
+pub use combine::*;
 pub use kind::*;
 
 #[derive(Eq, PartialEq, Ord, PartialOrd, Clone, Hash, Debug)]
