@@ -4,15 +4,15 @@ use std::fmt::Formatter;
 
 use arrayvec::ArrayString;
 
+use crate::id::id_from;
+use crate::id::IdLengthError;
+
 #[derive(PartialEq, Eq, PartialOrd, Ord, Clone, Copy, Hash, Debug)]
 pub struct EnchantmentKind(ArrayString<16>);
 
 impl EnchantmentKind {
-    pub fn from<'a>(id: impl Into<&'a str>) -> Self {
-        let id = ArrayString::from(id.into())
-            .expect("EnchantmentKind can't have an ID longer than 16 characters");
-
-        Self(id)
+    pub fn from<'a>(id: impl AsRef<str>) -> Result<Self, IdLengthError> {
+        id_from(id, |id| Self(id))
     }
 }
 

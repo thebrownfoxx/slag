@@ -4,15 +4,15 @@ use std::fmt::Formatter;
 
 use arrayvec::ArrayString;
 
+use crate::id::IdLengthError;
+use crate::id::id_from;
+
 #[derive(PartialEq, Eq, PartialOrd, Ord, Clone, Copy, Hash, Debug)]
 pub struct ItemKind(ArrayString<16>);
 
 impl ItemKind {
-    pub fn from<'a>(value: impl Into<&'a str>) -> Self {
-        let id = ArrayString::from(value.into())
-            .expect("ItemKind can't have an ID longer than 16 characters");
-
-        Self(id)
+    pub fn from<'a>(id: impl AsRef<str>) -> Result<Self, IdLengthError> {
+        id_from(id, |id| Self(id))
     }
 }
 
